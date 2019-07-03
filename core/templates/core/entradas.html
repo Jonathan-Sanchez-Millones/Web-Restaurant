@@ -1,0 +1,137 @@
+
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ STATIC_URL }} /static/js/entradas.js"></script>        
+{% endblock %}
+
+{% block content %}
+
+    <div class="container my-5">          
+    <h3 class="border-bottom pb-2 mb-4">Entradas</h3>          
+    <div class="grid-productos">
+
+            {% for entrada in entradas %}
+            <div class="card card-hover shadow bg-white rounded text-center" style="width: 100%">
+
+                <img class="card-img-top" src="{{entrada.image.url}}" alt="Card image cap">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="card-title text-center mb-0">{{entrada.nombre}}</h5>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-text">S/. {{entrada.precio}}</h5>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-primary" data-toggle="modal"
+                        data-target=".bd-example-modal-lg-Compra{{entrada.id}}">Más información</a>
+                </div>
+            </div>
+
+            <div class="modal fade bd-example-modal-lg-Compra{{entrada.id}}" tabindex="-1" role="dialog"
+            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content border-0">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Realizar compra</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fas fa-times text-white"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img src="{{entrada.image.url}}" class="img-fluid" alt="Responsive image"
+                                    style="height: 336px;">
+                            </div>
+                            <div class="col-md-7">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label text-right">Nombre</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control nombre" type="text" readonly
+                                                value="{{entrada.nombre}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label text-right">Descripción</label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control" type="text" rows="3" style="resize: none;"
+                                                readonly>{{entrada.descripcion|safe}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label text-right">Precio</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" type="text" readonly value="S/. {{entrada.precio}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label text-right">Cantidad</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control cantidad" style="width: 100%;">
+                                                <option selected>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-3 col-form-label text-right">Salsas</label>
+                                        <div class="col-sm-9">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                                    value="option1">
+                                                <label class="form-check-label" for="inlineCheckbox1"><img
+                                                        src="{% static 'core/img/tartara.png' %}" alt="Mayonesa" width="46"></label>
+
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                                    value="option2">
+                                                <label class="form-check-label" for="inlineCheckbox2"><img
+                                                        src="{% static 'core/img/agridulce.png' %}" alt="Mayonesa" width="46"></label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                                                    value="option3">
+                                                <label class="form-check-label" for="inlineCheckbox3"><img
+                                                        src="{% static 'core/img/aji.png' %}" alt="Mayonesa" width="46"></label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4"
+                                                    value="option4">
+                                                <label class="form-check-label" for="inlineCheckbox4"><img
+                                                        src="{% static 'core/img/paulista.png' %}" alt="Mayonesa" width="46"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <input type="button" class="btn btn-primary carrito" value="Agregar al carrito"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% endfor %}
+
+        </div>
+
+        
+
+    </div>
+
+{% endblock %}

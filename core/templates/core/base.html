@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>El Rinconcito Ayacuchano</title>
+
+    <script type="text/javascript" src="{{ STATIC_URL }} /static/jquery-3.3.1.min.js">
+    </script>
+    
+    <script type="text/javascript" src="{{ STATIC_URL }} /static/js/base.js"></script>        
+    <script type="text/javascript" src="{{ STATIC_URL }} /static/js/baselogin.js"></script>        
+    
+
+    {% block scripts %}
+    {% endblock %}
+
+    {% load static %}
+
+   <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'core/css/main.css' %}">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">
+            <img src="{% static 'core/img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+            Rinconcito Ayacuchano
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+                </li>
+                <li class="nav-item {% if request.path == '/promociones/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'promociones' %}">Promociones</a>
+                </li>
+                <li class="nav-item {% if request.path == '/entradas/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'entradas' %}">Entradas</a>
+                </li>
+                <li class="nav-item {% if request.path == '/platos/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'platos' %}">Platos</a>
+                </li>
+                <li class="nav-item {% if request.path == '/bebidas/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'bebidas' %}">Bebidas</a>
+                </li>
+                <li class="nav-item {% if request.path == '/carrito/' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'carrito' %}">Carrito de compras</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                
+                {% if request.path == '/pago/' %}
+                <li class="nav-item text-white">
+                    <i class="far fa-user d-inline-block"></i>
+                    <p class="p-2 mb-0 d-inline-block">Jhorlyn Santos Rosales</p>
+                </li>
+
+                <li class="nav-item">
+                    <!--<button type="button" class="btn nav-link">Cerrar sesión</button>-->
+                    <a class="nav-link" href="index.html">Cerrar sesión</a>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                    <!--Trigger modal Registrarse-->
+                    <a class="nav-link remove user" data-toggle="modal" data-target="#exampleModalRegistrarse"
+                        href="./abed.html">Registrarse</a>
+                </li>
+                <li class="nav-item">
+                    <!--Trigger modal IniciarSesion-->
+                    <a class="nav-link remove cerrar" data-toggle="modal" data-target="#exampleModalIniciarSesion" href="#">Iniciar
+                        sesión</a>
+                </li>
+                
+
+
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Modal Registrarse-->
+    <div class="modal fade" id="exampleModalRegistrarse" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content border-0">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Registrarse en Rinconcito Ayacuchano</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times text-white"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="Test307.aspx" id="formRegistrarse">
+                        <div class="form-group">
+                            <label for="exampleInputNombresRegistrarse">Nombres</label>
+                            <input type="text" class="form-control nombres" id="exampleInputNombresRegistrarse"
+                                placeholder="Ingresa tus nombres" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputApellidosRegistrarse">Apellidos</label>
+                            <input type="text" class="form-control" id="exampleInputApellidosRegistrarse"
+                                placeholder="Ingresa tus apellidos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputDireccionRegistrarse">Dirección</label>
+                            <input type="text" class="form-control" id="exampleInputDireccionRegistrarse"
+                                placeholder="Ingresa tu dirección" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmailRegistrarse">Correo electrónico</label>
+                            <input type="email" class="form-control" id="exampleInputEmailRegistrarse"
+                                aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico" required>
+                            <small id="emailHelp" class="form-text text-muted">No compartiremos tu correo electrónico
+                                con nadie más.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPasswordRegistrarse">Contraseña</label>
+                            <input type="password" class="form-control" id="exampleInputPasswordRegistrarse"
+                                placeholder="Ingresa una contraseña" required>
+                        </div>
+                        <small class="form-text text-muted">Estoy de acuerdo con los <a href="#">Terminos de
+                                uso</a> y la <a href="#">Politica de Privacidad</a> de Rinconcito Ayacuchano.</small>
+                    </form>
+                </div>
+                <div class="modal-footer bg-light">
+                    <input type="button" class="btn btn-primary" id="registro" form="formRegistrarse" value="Registrarse"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal IniciarSesion-->
+    <div class="modal fade" id="exampleModalIniciarSesion" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border-0">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Iniciar sesión en Rinconcito Ayacuchano</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times text-white"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formIniciarSesion">
+                        <div class="form-group">
+                            <label for="exampleInputEmailIniciarSesion">Correo electrónico</label>
+                            <input type="email" class="form-control" id="exampleInputEmailIniciarSesion"
+                                aria-describedby="emailHelp" placeholder="Ingresa tu correo electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPasswordIniciarSesion">Contraseña</label>
+                            <input type="password" class="form-control" id="exampleInputPasswordIniciarSesion"
+                                placeholder="Ingresa tu contraseña" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-light">
+
+                    <input type="button" class="btn btn-primary" id="login" form="formIniciarSesion" value="Iniciar sesión"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="bg-dark">
+
+        <div class="container">
+            <div class="row text-white py-4">
+                <div class="col-sm-4 d-flex flex-column">
+                    <h5 class="text-center">Más información</h5>
+                    <a class="text-white" href="#">Nosotros</a>
+                    <a class="text-white" href="#">Locales</a>
+                    <a class="text-white" href="#">Atención al cliente</a>
+                    <a class="text-white" href="#">Preguntas frecuentes</a>
+                    <a class="text-white" href="#">Politicas de datos personales</a>
+                    <a class="text-white" href="#">Términos y condiciones de Promociones</a>
+                    <a class="text-white" href="#">Empresas y socios estratégicos</a>
+                    <a class="text-white" href="#">Encargados del tratamiento</a>
+                    <a class="text-white" href="#">Derechos ARCO</a>
+                </div>
+                <div class="col-sm-3">
+                    <h5 class="text-center">Formas de pago</h5>
+                    <div class="d-flex justify-content-center mt-3">
+                        <img class="mx-2" src="{% static 'core/img/visa.png' %}" alt="" height="50">
+                        <img class="mx-2" src="{% static 'core/img/mastercard.png' %}" alt="" height="50">
+                        <img class="mx-2" src="{% static 'core/img/efectivo.png' %}" alt="" height="50">
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <h5 class="text-center">¿Quieres recibir promociones y noticias?</h5>
+                    <form class="form-inline mt-3 d-flex justify-content-center">
+                        <div class="form-group mx-sm-2 mb-2">
+                            <input type="email" class="form-control" placeholder="Correo electrónico">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">Suscribirme aquí</button>
+                    </form>
+                    <h5 class="text-center mt-5">Contáctanos</h5>
+                    <div class="d-flex justify-content-center">
+                        <a class="text-white mx-3" href="#"><i class="fab fa-facebook-f fa-2x"></i></a>
+                        <a class="text-white mx-3" href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a class="text-white mx-3" href="#"><i class="fab fa-instagram fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://kit.fontawesome.com/3d881e5169.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

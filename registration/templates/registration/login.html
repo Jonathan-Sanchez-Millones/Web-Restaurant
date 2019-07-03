@@ -1,0 +1,34 @@
+
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content border-0 shadow bg-white rounded">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Iniciar sesión en Rinconcito Ayacuchano</h5>
+            </div>
+            <div class="modal-body">
+                <form id="formIniciarSesion">
+                    <div class="form-group">
+                        <label for="exampleInputEmailIniciarSesion">Nombre</label>
+                        <input type="text" class="form-control" id="exampleInputEmailIniciarSesion"
+                            aria-describedby="emailHelp" placeholder="Ingresa tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPasswordIniciarSesion">Contraseña</label>
+                        <input type="password" class="form-control" id="exampleInputPasswordIniciarSesion"
+                            placeholder="Ingresa tu contraseña" required>
+                    </div>
+                                    <input type="submit" class="btn btn-primary" form="formIniciarSesion" value="Iniciar sesión"/>
+
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
