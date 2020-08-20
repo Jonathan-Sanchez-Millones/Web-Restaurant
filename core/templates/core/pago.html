@@ -159,7 +159,7 @@
                             {% endfor %}
                             <tr>
                                 <th scope="row">Subtotal</th>
-                                <td colspan="2" class="text-right">S/. {{subtotal}}</td>
+                                <td colspan="2" class="text-right">S/. {{subtotal|floatformat:2}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Delivery</th>
@@ -167,7 +167,7 @@
                             </tr>
                             <tr class="table-success">
                                 <th scope="row">Total</th>
-                                <td colspan="2" class="text-right">S/. {{total}}</td>
+                                <td colspan="2" class="text-right">S/. {{total|floatformat:2}}</td>
                             </tr>
                         </tbody>
                     </table>
