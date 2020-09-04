@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	console.log("pago.js cargado");
-	console.log("ctmre");
+    console.log("ctmre");
+    var radioValue="Efectivo";
     $('.continuar').click(function(){
 
         console.log("me presionate");
@@ -10,16 +11,56 @@ $(document).ready(function(){
         
     });
 
-    $('.continuar2').click(function(){
+    $("input[type='radio']").click(function(){
+        radioValue = $("input[name='exampleRadios']:checked").val();
+        console.log(radioValue);
+    });
 
-        console.log("me presionate");
+    $('.continuar5').click(function(){
+
+        console.log("me presionate 1.5");
+        console.log(radioValue);
         
 
+        //$(this).parent().parent().parent().parent().parent().find('.activar2').removeClass("div-disabled"); 
+        //$('#exampleModalTarjeta').empty()
+
+        
+        
+    });
+
+    $('.continuar2').click(function(){
+
+        console.log("me presionate 2");
+        var numero="";
+        numero=$('#exampleInputNumeroTarjeta').val();
+        console.log(numero);
+        var cvv="";
+        cvv=$('#exampleInputCodigo').val();
+        console.log(cvv);
         $(this).parent().parent().parent().parent().parent().find('.activar2').removeClass("div-disabled"); 
         //$('#exampleModalTarjeta').empty()
+        if(numero=='' || cvv==''){
+            alert("Por favor completa todos los campos!");
+        }
+        else if(numero.length!=16){
+            alert("Por favor ingrese un numero de tarjeta válido...!!!!!!");
+
+        }
+        else if(cvv.length!=3){
+            alert("Por favor ingrese correctamente el codigo de seguridad de la tarjeta!");
+
+        }
+        else{
+            alert("Registro exitoso de su tarjeta "+radioValue);
+
+            $('#exampleModalTarjeta').modal("hide");
+
+        }
 
     });
 
+    
     $('#finalizar').click(function(){
 
         console.log("me presionateeeeeee");

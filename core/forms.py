@@ -9,7 +9,7 @@ class MyUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('nombres','apellidos','address','tarjeta','email') #'full_name',)
+        fields = ('nombres','apellidos','address','email') #'full_name',)
 
     def clean_password(self):
         # Check that the two password entries match

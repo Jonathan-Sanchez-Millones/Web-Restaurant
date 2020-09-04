@@ -5,7 +5,7 @@ from django.contrib.auth.models import (
 )
 
 class MyUserManager(BaseUserManager):
-    def create_user(self,email,password_decrypt=None,nombres=None,apellidos=None,address=None,tarjeta=None,password=None):
+    def create_user(self,email,password_decrypt=None,nombres=None,apellidos=None,address=None,password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -19,8 +19,7 @@ class MyUserManager(BaseUserManager):
             nombres=nombres,
             apellidos=apellidos,
             address=address,
-            tarjeta=tarjeta,
-
+            #tarjeta=tarjeta
 
 
         )
@@ -56,7 +55,7 @@ class MyUser(AbstractBaseUser):
     nombres= models.CharField(max_length=200 , verbose_name="Nombres",blank=True,null=True,default="")
     apellidos= models.CharField(max_length=200 , verbose_name="Apellidos",blank=True,null=True,default="")
     address=models.CharField(max_length=200,verbose_name="direccion",blank=True,null=True,default="")
-    tarjeta=models.CharField(max_length=200,verbose_name="tarjeta",blank=True,null=True,default="")
+    #tarjeta=models.CharField(max_length=200,verbose_name="tarjeta",blank=True,null=True,default="")
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
